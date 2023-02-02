@@ -11,9 +11,9 @@ class UserAdmin(a.UserAdmin):
     form = UserChangeForm
     model = UserModel
     list_display = [
-        "email",
-        "username",
-        "is_superuser"
+        'email',
+        'username',
+        'is_superuser'
     ]
 
 admin.site.register(UserModel, UserAdmin)

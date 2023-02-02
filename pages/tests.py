@@ -5,7 +5,7 @@ from .views import HomePageView
 
 class HomePageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse("home")
+        url = reverse('home')
         self.response = self.client.get(url)
 
     def test_location(self):
@@ -13,16 +13,16 @@ class HomePageTests(SimpleTestCase):
     
     def test_template(self):
         self.assertTemplateUsed(self.response, 'home.html')
-        self.assertContains(self.response, "home page")
-        self.assertNotContains(self.response, "Hi there! I should not be on the page.")
+        self.assertContains(self.response, 'home page')
+        self.assertNotContains(self.response, 'Hi there! I should not be on the page.')
 
     def test_resolver(self):
-        view = resolve("/")
+        view = resolve('/')
         self.assertEqual(view.func.__name__, HomePageView.as_view().__name__)
 
 class AboutPageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse("about")
+        url = reverse('about')
         self.response = self.client.get(url)
 
     def test_location(self):
@@ -30,9 +30,9 @@ class AboutPageTests(SimpleTestCase):
     
     def test_template(self):
         self.assertTemplateUsed(self.response, 'about.html')
-        self.assertContains(self.response, "About page")
-        self.assertNotContains(self.response, "Hi there! I should not be on the page.")
+        self.assertContains(self.response, 'About page')
+        self.assertNotContains(self.response, 'Hi there! I should not be on the page.')
 
     def test_resolver(self):
-        view = resolve("/about/")
+        view = resolve('/about/')
         self.assertEqual(view.func.__name__, HomePageView.as_view().__name__)

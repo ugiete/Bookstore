@@ -4,14 +4,14 @@ class UserCreationForm(forms.UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = (
-            "email",
-            "username"
+            'email',
+            'username'
         )
 
 class UserChangeForm(forms.UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = (
-            "email",
-            "username"
+            'email',
+            'username'
         )
