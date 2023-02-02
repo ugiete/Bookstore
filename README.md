@@ -1,0 +1,2 @@
+# Bookstore
+Django application
