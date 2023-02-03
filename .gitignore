@@ -130,3 +130,6 @@ dmypy.json
 
 # Static files
 staticfiles/
+
+# Production docker-compose
+docker-compose-prod.yaml
