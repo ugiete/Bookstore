@@ -17,6 +17,8 @@ class BookDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     login_url = 'account_login'
     permission_required = 'books.special_status'
 
+    queryset = Book.objects.all().prefetch_related('reviews__user')
+
 class SearchResultsListView(LoginRequiredMixin, ListView):
     model = Book
     context_object_name = 'book_list'
