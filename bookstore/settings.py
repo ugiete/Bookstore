@@ -1,5 +1,17 @@
 from pathlib import Path
 from environs import Env
+from socket import gethostbyname_ex, gethostname
+
+def get_internal_ips() -> list:
+    _hostname, _alias, ips = gethostbyname_ex(gethostname())
+    internal_ips = []
+
+    for ip in ips:
+        ip_octets = ip.split('.')
+        internal_ips.append(f'{ip_octets[0]}.{ip_octets[1]}.{ip_octets[2]}.1')
+    
+    return internal_ips
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,6 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'debug_toolbar',
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
@@ -49,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'bookstore.urls'
@@ -151,3 +165,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 DEFAULT_FROM_EMAIL = 'admin@ugietebookstore.com'
+
+INTERNAL_IPS = get_internal_ips()
